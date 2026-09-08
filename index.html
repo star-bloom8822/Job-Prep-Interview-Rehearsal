@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Prep: Interview Rehearsal</title>
+    <style>
+       :root {
+            --primary: #415f7d;
+            --primary-hover: #b7bdd7;
+            --bg-color: #f7f7f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2022;
+            --text-muted: #4b515c;
+            --border: #d7d3d0;
+            --accent-bg: #f5f5f4;
+            
+            --success-bg: #f5f5f4;
+            --success-border: #d1d5db;
+            --success-text: #1f2022;
+            
+            --warning-bg: #fdf8f6;
+            --warning-border: #d48c5b;
+            --warning-text: #824933;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+            font-size: 1.75rem;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            margin-top: 0;
+        }
+
+        .control-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .timer-section {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .timer-display {
+            font-size: 1.25rem;
+            font-weight: bold;
+            font-variant-numeric: tabular-nums;
+            background: var(--accent-bg);
+            padding: 4px 12px;
+            border-radius: 6px;
+            color: var(--text-main);
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button.secondary {
+            background-color: #e7e5e4;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        button.secondary:hover {
+            background-color: #d6d3d1;
+        }
+
+        button.filter-btn {
+            background-color: var(--accent-bg);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            padding: 6px 10px;
+        }
+        button.filter-btn.active {
+            background-color: var(--warning-bg);
+            border-color: var(--warning-border);
+            color: var(--warning-text);
+            font-weight: 600;
+        }
+
+        .category-filters-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .category-filters-container span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-right: 4px;
+        }
+
+        .dropdown-container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        details {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            padding: 12px 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            color: #1f2022;
+            font-size: 1rem;
+        }
+
+        .dropdown-content {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: #1f2022;
+            line-height: 1.5;
+        }
+
+        .dropdown-content ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .dropdown-content li {
+            margin-bottom: 6px;
+        }
+
+        .smart-q-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border);
+        }
+        .smart-q-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .generated-output-box {
+            background: var(--accent-bg);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            color: var(--text-main);
+            margin-top: 10px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03);
+            margin-bottom: 20px;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .badge {
+            background: var(--accent-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .flag-btn {
+            background: var(--accent-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .flag-btn.flagged {
+            background: var(--warning-bg);
+            border-color: var(--warning-border);
+            color: var(--warning-text);
+            font-weight: 600;
+        }
+
+        .question-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        h2#question-title {
+            font-size: 1.25rem;
+            margin: 0;
+            flex-grow: 1;
+            word-break: break-word;
+        }
+
+        .audio-icon-btn {
+            background: var(--accent-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .audio-icon-btn:hover {
+            background: #e7e5e4;
+            transform: scale(1.05);
+        }
+
+        .interactive-section {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .notes-container label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1f2022;
+            margin-bottom: 4px;
+        }
+
+        .notes-container textarea {
+            width: 100%;
+            height: 160px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            background: #ffffff;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .notes-container textarea:focus {
+            outline: 2px solid var(--primary);
+            border-color: var(--primary);
+        }
+
+        .status-msg {
+            font-size: 0.8rem;
+            color: var(--success-text);
+            background: var(--success-bg);
+            border: 1px solid var(--success-border);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .status-msg.show {
+            opacity: 1;
+        }
+
+        .privacy-box {
+            font-size: 0.95rem;
+            color: #1f2022;
+            background: var(--accent-bg);
+            padding: 14px 16px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+        .privacy-box ul {
+            margin: 4px 0 0 16px;
+            padding: 0;
+        }
+        .privacy-box li {
+            margin-bottom: 8px;
+        }
+
+        .privacy-box li:last-child {
+    margin-bottom: 0; 
+        } 
+
+        .sample-answer-toggle {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            background: #a3cca6; 
+            border: 1px solid #5a8a68;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-align: left;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
+        }
+        .sample-answer-toggle:hover {
+            background: #92bc95;
+            border-color: #58835c;
+        }
+        .sample-answer-box {
+            display: none;
+            background: var(--success-bg);
+            border: 1px solid var(--success-border);
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #1f2022;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+
+        .sample-answer-box strong {
+            color: #1f2022;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .card, .control-panel, details, .category-filters-container { padding: 16px; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Job Prep: Interview Rehearsal</h1>
+        <p class="subtitle">Universal Interview Questions & Strategy Guide</p>
+    </header>
+
+    <div class="dropdown-container" style="margin-top: 0; margin-bottom: 20px;">
+        <details>
+            <summary>💡 How to Practice Effectively </summary>
+            <div class="dropdown-content">
+                <ul style="margin-top: 0; padding-left: 20px;">
+                    <li><strong>Speak Aloud:</strong> Do not just think through the answers silently. Speak your answers out loud and train yourself to articulate your thoughts smoothly.</li>
+                    <li><strong>Use the Scratchpad:</strong> Take a moment to map your thoughts into the scratchpad using the STAR framework before answering.</li>
+                    <li><strong>Consistent Practice:</strong> Aim to rehearse the questions <strong>2–3 times a day</strong> to build a habit of answering clearly under pressure.</li>
+                    <li><strong>Avoid Filler Words:</strong> When facing a mental block, pause for 2 seconds and you can use any of the following professional bridge phrases:
+    <ul>
+        <li>That’s a great question. Let me take a second to frame my thoughts.</li>
+        <li>To give you the best example, I’d point back to...</li>
+    </ul>
+</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <div class="control-panel">
+        <div class="timer-section">
+            <span>Per-Question Pacing Timer:</span>
+            <span id="timer" class="timer-display">02:00</span>
+            <button id="timer-btn" onclick="toggleTimer()">Start</button>
+            <button class="secondary" onclick="resetTimer()">Reset</button>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <button id="filter-toggle-btn" class="filter-btn" onclick="toggleFlagFilter()">🔖 Bookmarked Only</button>
+            <span id="progress-indicator" style="font-weight: 500; font-size: 0.9rem;">Question 1 of 20</span>
+        </div>
+    </div>
+
+    <div class="category-filters-container">
+        <span>Filter Category:</span>
+        <button class="filter-btn active" id="cat-all" onclick="filterByCategory('All')">All</button>
+        <button class="filter-btn" id="cat-behavioral" onclick="filterByCategory('Behavioral')">Behavioral</button>
+        <button class="filter-btn" id="cat-leadership" onclick="filterByCategory('Leadership')">Leadership</button>
+        <button class="filter-btn" id="cat-problem" onclick="filterByCategory('Problem Solving')">Problem Solving</button>
+        <button class="filter-btn" id="cat-assessment" onclick="filterByCategory('Assessment')">Assessment</button>
+    </div>
+
+    <div class="card" id="question-card-container">
+        <div class="question-header" style="margin-bottom: 20px;">
+            <div class="badge-group">
+                <span id="question-number" class="badge">Category: General</span>
+            </div>
+            <button id="flag-btn" class="flag-btn" onclick="toggleFlag()">🔖 Bookmark</button>
+        </div>
+
+        <div class="question-row">
+            <h2 id="question-title">Loading question...</h2>
+            <button class="audio-icon-btn" onclick="speakCurrentQuestion()" title="Listen to Question">🔊</button>
+        </div>
+
+        <div class="interactive-section" style="margin-top: 36px;">
+            <div class="notes-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; flex-wrap: wrap; gap: 6px;">
+                    <label for="question-notes" style="margin-bottom: 0; font-size: 0.90rem; font-weight: 700; color: #1f2022;">Quick Scratchpad Notes for Answers & STAR Framework Draft:</label>
+
+        <textarea id="question-notes" placeholder="Jot down your Situation, Task, Action, and Result here..."></textarea>
+    </div>
+</div>
+
+          <div>
+                <button class="sample-answer-toggle" onclick="toggleSampleAnswer()">View Sample Answer</button>
+                <div id="sample-answer-box" class="sample-answer-box">
+                    <p id="sample-answer-text" style="margin: 0;margin-bottom:4px"></p>
+                </div>
+            </div>
+               
+            <div class="privacy-box" style="margin-top: 10px;">
+                <div style="margin-bottom: 8px;">🔒 <strong>Privacy & Security Protection:</strong></div>
+    <ul style="margin: 0; padding-left: 20px;">
+                    <li><strong>Zero Personal Info:</strong> Avoid entering sensitive personal details or work history (such as passwords, banking info, or official IDs) in the Quick Scratchpad Notes.</li>
+                    <li><strong>No Server Transmission:</strong> Data never leaves your browser or gets uploaded to any remote server.</li>
+                    <li><strong>Session Expiration:</strong> Notes are kept temporarily and will not be saved if you refresh the page, switch questions, clear browser cache, or close the window.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+      
+    <div class="nav-buttons" id="nav-buttons-container">
+        <button class="secondary" id="prev-btn" onclick="prevQuestion()">Previous</button>
+        <button id="next-btn" onclick="nextQuestion()">Next Question</button>
+    </div>
+
+    <script>
+document.addEventListener('keydown', function(event) {
+    if (event.target.tagName === 'TEXTAREA' || event.target.tagName === 'INPUT') return;
+    if (event.key === 'ArrowLeft') {
+        prevQuestion();
+    } else if (event.key === 'ArrowRight') {
+        nextQuestion();
+    }
+});
+</script>
+
+    <div class="dropdown-container">
+      <details>
+    <summary> Quick Guide: The STAR Method for Behavioral Questions</summary>
+    <div class="dropdown-content">
+        <p style="margin-top: 0;">Use the STAR framework to structure clear, concise answers to behavioral questions:</p>
+        <ul style="padding-left: 20px;">
+            <li><strong>Situation (S):</strong> Set the scene and provide necessary context (1-2 sentences).</li>
+            <li><strong>Task (T):</strong> Explain your responsibility or the challenge you needed to solve.</li>
+            <li><strong>Action (A):</strong> Detail the specific steps <em>you</em> took to address the problem (focus on your contribution).</li>
+            <li><strong>Result (R):</strong> Share the outcome, ideally backed by metrics, data, or lessons learned.</li>
+        </ul>
+    </div>
+</details>
+
+        <details>
+            <summary>Strategy Guide: In-Person Interviews</summary>
+           <div class="dropdown-content">
+    <p><strong>Attire:</strong></p>
+    <ul>
+        <li><strong>Business Formal:</strong> Professional blazer, collared white shirt, dark dress pants, and clean dress shoes.</li>
+        <li><strong>Business Casual:</strong> Button-down shirt, tailored trousers, and clean leather loafers.</li>
+    </ul>
+                <p><strong>Lobby Etiquette:</strong> Keep your phone completely stowed away in silent mode and remove your earbuds the moment you walk through the building doors.</p>
+                <p><strong>Pre-Interview Check:</strong> Arrive 20 to 30 minutes early in the area to use a nearby washroom without rushing and to do a quick mirror check.</p>
+                <p><strong>Tips:</strong> Enter the interview location 10 to 15 minutes before your time, and while waiting, take a few deep breaths to calm your nerves. 
+
+</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Strategy Guide: Virtual Interviews</summary>
+            <div class="dropdown-content">
+                <p><strong>Attire:</strong> Business professional attire from the waist up in solid colors.</p>
+                <p><strong>Environment & Tech:</strong> Double check your internet connection, test your microphone, and camera 30 minutes prior. Use headphones to prevent echo, sit in a quiet room, and close all background apps and notifications.</p>
+                <p><strong>Background & Lighting:</strong> Sit facing a light source (avoid windows behind you) and choose a clean background or a neutral white wall if clutter-free space isn't available.</p>
+                <p><strong>Pre-Interview Check:</strong> Visit the restroom beforehand and keep a glass of water nearby.</p>
+                <p><strong>Delivery Tips:</strong> Look directly into the camera lens when speaking to maintain eye contact.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Post-Interview Toolkit: Sample Thank-You Email</summary>
+            <div class="dropdown-content">
+                <p style="margin-top: 0; color: var(--text-main);">Send this within 24 hours of your interview. If you interviewed for multiple roles, send a separate, tailored email to each interviewer that reflects your conversation with them.</p>
+        <p style="margin-bottom: 6px; color: var(--text-main);"><strong>Subject Line:</strong> Thank you – [Role Name] Interview – [Your Name]</p>
+        <div id="ty-output" class="generated-output-box">Dear [Interviewer Name],
+
+Thank you very much for taking the time to speak with me today regarding the [Role Name] position. I truly enjoyed learning more about your team's current goals, especially our conversation surrounding [Specific Topic Discussed].
+
+Our discussion further strengthened my enthusiasm for this role, and I am confident that my background will allow me to deliver immediate value to your projects. 
+
+Thank you again for your time and consideration. I look forward to hearing from you regarding the next steps.
+
+Best regards,
+
+[Your Name]</div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+                    <button class="secondary" style="font-size: 0.85rem; padding: 6px 12px; white-space: nowrap;" onclick="copyThankYou()">📋 Copy Sample Email</button>
+                    <span id="ty-status" class="status-msg">✓ Copied!</span>
+                </div>
+            </div>
+        </details>
+    </div>
+</div>
+
+<script>
+    const originalQuestions = [
+        {
+            title: "Tell me about yourself.",
+            category: "Assessment",
+            star: `I have 6 years of experience as a manager. Over those years, I have developed strong skills in time management, problem-solving, leadership, and team mentorship. I'm looking to apply these same skills to this role, where I know I can bring excellent customer service and be a great asset to your team.`
+        },
+        {
+            title: "Why do you want to work for this company?",
+            category: "Assessment",
+            star: `While I am grateful for the 6 years of experience I gained in my previous management role, I am looking to challenge myself in a new environment. Your company's background and values align perfectly with my long-term goals.`
+        },
+        {
+            title: "What are your greatest strengths?",
+            category: "Assessment",
+            star: `My greatest strengths are my organizational skills and adaptability. Staying organized helps me track deadlines and manage tasks without missing anything important. Meanwhile, being adaptable allows me to stay flexible in learning new responsibilities quickly. Both of these skills make me a great worker and successful in this role.`
+        },
+        {
+            title: "What is your biggest weakness?",
+            category: "Assessment",
+            star: `My biggest weakness is taking on too many tasks without saying no. Because I want to help during busy shifts, I used to accept every request and stretch myself thin. To fix this, I’ve learned to pause, evaluate my current tasks, and communicate my workload to my team. This helps me stay focused and deliver better quality work.`
+        },
+        {
+            title: "Tell me about a time you faced a difficult challenge at work and how you overcame it.",
+            category: "Behavioral",
+            star: `<strong>STAR Framework Example:</strong><br>
+            • <strong>Situation:</strong> We faced a time-sensitive request that needed to be completed within 48 hours.<br>
+            • <strong>Task:</strong> Re-prioritize our tasks and delegate the workloads in an efficient manner.<br>
+            • <strong>Action:</strong> Created a spreadsheet to map out the work and coordinated closely with supervisors to assign responsibilities effectively.<br>
+            • <strong>Result:</strong> We successfully completed the request on time with zero errors.`
+        },
+        {
+            title: "Where do you see yourself in five years?",
+            category: "Assessment",
+            star: `In the next five years, I see myself with even more hands-on experience, taking on greater responsibilities, and mentoring more colleagues in the same or different department. My goal is to keep growing both individually and professionally.`
+        },
+        {
+            title: "Why are you looking to leave your current role?",
+            category: "Assessment",
+            star: `After 6 years in my current management role, I’m proud of what I accomplished with my team, and I'm grateful for the experience. However, I’m looking for a new work environment where I can focus more directly on hands-on operations, customer service, and problem-solving. I want to apply my skills to a company like this one and continue to thrive in my career. `
+        },
+        {
+            title: "What is a professional accomplishment you are most proud of?",
+            category: "Behavioral",
+            star: `<strong>STAR Framework Example:</strong><br>
+            • <strong>Situation:</strong> Our team was facing a major peak rush hour during an understaffed shift, causing delays and stress on the staff.<br>
+            • <strong>Task:</strong> As a manager, I re-organized our workflow and maintained quality customer service.<br>
+            • <strong>Action:</strong> Assisted with taking customer orders and helped kitchen staff with cooking meals to make sure we finished everything efficiently.<br>
+            • <strong>Result:</strong> We successfully navigated the rush and reduced wait times while keeping the team supported.`
+        },
+        {
+            title: "How would you handle a conflict or disagreement within a team, and what steps would you take to resolve it?",
+            category: "Behavioral",
+            star: `<strong>STAR Framework Example:</strong><br>
+            • <strong>Situation:</strong> A disagreement arose within the team regarding handling urgent requests during a busy shift.<br>
+            • <strong>Task:</strong> To address the problems and resolve the issues objectively.<br>
+            • <strong>Action:</strong> Proposed reviewing previous precedents together to evaluate the data to find a solution.<br>
+            • <strong>Result:</strong> The backlog of the requests was cleared, and the team dynamic improved its communication.`
+        },
+        {
+            title: "Describe a time when you had to complete an urgent deadline under pressure, and how you handled it.",
+            category: "Behavioral",
+            star: `<strong>STAR Framework Example:</strong><br>
+            • <strong>Situation:</strong> Managing multiple client requests during an urgent deadline.<br>
+            • <strong>Task:</strong> To meet the tight deadline while maintaining high work quality and keeping clients informed.<br>
+            • <strong>Action:</strong> I broke the workload down into actionable steps, and provided timely updates to the clients.<br>
+            • <strong>Result:</strong> I completed the tasks calmly and effectively, resulting in increased client satisfaction.`
+        },
+        {
+            title: "Tell me about a time you made a mistake or experienced a failure, and what did you learn from it?",
+            category: "Behavioral",
+            star: `<strong>STAR Framework Example:</strong><br>
+            • <strong>Situation:</strong> Many typos were found in important documents.<br>
+            • <strong>Task:</strong> To take immediate ownership and address the errors that were made.<br>
+            • <strong>Action:</strong> I cross-referenced with original sources, and made sure to verify the information before completing it.<br>
+            • <strong>Result:</strong> The corrected documentation was submitted accurately, and I learned to consistently double-check all data to prevent any errors in the future.`
+        },
+        {
+            title: "How do you prioritize your workload when handling multiple tasks?",
+            category: "Problem Solving",
+            star: `When I am handling multiple tasks, I assess each one based on its urgency and priority. I use a daily to-do list to handle high-priority workloads first before moving on to other responsibilities. I also set reminders or notes for myself to follow up, ensuring nothing gets missed.`
+        },
+        {
+            title: "Tell me about a situation where you noticed a potential issue, and explain what you did to fix or prevent it.",
+            category: "Behavioral",
+            star: `<strong>STAR Framework Example:</strong><br>
+            • <strong>Situation:</strong> Important documents were saved in the incorrect folder.<br>
+            • <strong>Task:</strong> To ensure that the designated folders contained the correct information to prevent confusion.<br>
+            • <strong>Action:</strong> I double-checked all documents to ensure they were filed correctly. I cross-referenced the original sources or reprinted a copy to make sure nothing was missing or misplaced.<br>
+            • <strong>Result:</strong> We restored order to the files, eliminated confusion for the team, and ensured our records were accurate.`
+        },
+        {
+            title: "What do you think are the most important skills for this role?",
+            category: "Assessment",
+            star: `I think the most important skills for this role are time management and problem-solving. Without these skills, it would be difficult to handle multiple demands efficiently. For example, balancing taking customer orders while preparing beverages. I consider them essential in delivering great customer service.`
+        },
+        {
+            title: "How do you handle feedback or constructive criticism?",
+            category: "Assessment",
+            star: `I handle feedback and constructive criticism very well. I view it as an opportunity to identify areas where I can improve and grow. I use feedback to refine my work ethic, adjust my approach, and ensure I am continuously performing at my best.`
+        },
+        {
+            title: "Tell me about a time you went out of your way to support the team to reach a common goal.",
+            category: "Leadership",
+            star: `In my previous role, I was preparing to restock our inventory when I noticed a massive lineup of customers waiting to order during peak rush hour. I assisted my colleagues by taking orders and handling demands, and together we cleared the backlog. Once things slowed down, I returned to restocking inventory.`
+        },
+        {
+            title: "Describe a time you had to adapt quickly to major changes in the workplace.",
+            category: "Behavioral",
+            star: `<strong>STAR Framework Example:</strong><br>
+            • <strong>Situation:</strong> New software was implemented in the company, which affected how we updated our data.<br>
+            • <strong>Task:</strong> Master the new platform quickly to prevent workflow delays.<br>
+            • <strong>Action:</strong> I reviewed and studied available tutorials, used practical examples to navigate the system, and shared those examples with the team.<br>
+            • <strong>Result:</strong>I brought my peers up to speed quickly with minimal interruptions to data submission.`
+        },
+        {
+            title: "How would you approach a situation where you are given a task with little to no information as to how to complete it?",
+            category: "Problem Solving",
+            star: `When given a task with little direction, I review and refer to any existing documents, resources, or past precedents. I apply my best judgment to handle it, and then I will reach out to a supervisor or colleague with specific questions if anything is unclear. Once completed, I make a note of it to serve as a helpful reference or guide for any future tasks.`
+        },
+        {
+            title: "What are your salary expectations for this role?",
+            category: "Assessment",
+            star: `Based on my experience and research for this role, I am looking for a range between $50k and $60k. However, I am open to discussing a total compensation package that reflects the qualifications of the position.`
+        },
+        {
+            title: "Do you have any questions for us?",
+    category: "Assessment",
+    star: `<strong style="display: block; margin-bottom: 8px; color: #1f2022;">Smart Questions to Ask Your Interviewer(s):</strong>
+    <div style="background-color: #ffffff !important; background: #ffffff !important; padding: 16px; border-radius: 8px; color: #1f2022;">
+        <p style="margin-top: 0; color: #1f2022;">Here are a few strong questions to ask at the end of your interview:</p>
+        <div class="smart-q-item" style="background-color: #ffffff !important; background: #ffffff !important;">
+            <div><strong>1.</strong> What does success look like in the first 90 days in this role?</div>
+            <button class="audio-icon-btn" style="width: 32px; height: 32px; font-size: 0.9rem;" onclick="speakCustomText('What does success look like in the first 90 days in this role?')" title="Listen">🔊</button>
+        </div>
+        <div class="smart-q-item" style="background-color: #ffffff !important; background: #ffffff !important;">
+            <div><strong>2.</strong> How would you describe the team culture for this position?</div>
+            <button class="audio-icon-btn" style="width: 32px; height: 32px; font-size: 0.9rem;" onclick="speakCustomText('How would you describe the team culture for this position?')" title="Listen">🔊</button>
+        </div>
+        <div class="smart-q-item" style="background-color: #ffffff !important; background: #ffffff !important;">
+            <div><strong>3.</strong> What are the next steps in the hiring process, and what is your expected timeline?</div>
+            <button class="audio-icon-btn" style="width: 32px; height: 32px; font-size: 0.9rem;" onclick="speakCustomText('What are the next steps in the hiring process, and what is your expected timeline?')" title="Listen">🔊</button>
+        </div>
+        <div class="smart-q-item" style="background-color: #ffffff !important; background: #ffffff !important;">
+            <div><strong>4.</strong> Is there anything about my background or experience that you would like me to clarify?</div>
+            <button class="audio-icon-btn" style="width: 32px; height: 32px; font-size: 0.9rem;" onclick="speakCustomText('Is there anything about my background or experience that you would like me to clarify?')" title="Listen">🔊</button>
+        </div>
+    </div>`
+        }
+    ];
+
+  let randomizedQuestions = [];
+    let originalCardHTML = null;
+
+    function initializeQuiz() {
+        let pool = [...originalQuestions];
+        
+        let q20 = null;
+        if (pool.length >= 20) {
+            q20 = pool[19];
+            pool.splice(19, 1);
+        }
+        
+        let salaryIndex = pool.findIndex(q => q.title === "What are your salary expectations for this role?");
+        let salaryQuestion = null;
+        if (salaryIndex !== -1) {
+            salaryQuestion = pool.splice(salaryIndex, 1)[0];
+        }
+        
+        for (let i = pool.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [pool[i], pool[j]] = [pool[j], pool[i]];
+        }
+        
+        if (salaryQuestion) {
+            let targetPos = Math.floor(Math.random() * 5) + (pool.length - 5);
+            if (targetPos < 0) targetPos = 0;
+            if (targetPos > pool.length) targetPos = pool.length;
+            pool.splice(targetPos, 0, salaryQuestion);
+        }
+        
+        if (q20) {
+            pool.push(q20);
+        }
+        
+        randomizedQuestions = pool;
+    }
+
+    let currentIndex = 0;
+    let totalSeconds = 120;
+    let timerInterval = null;
+    let timerRunning = false;
+    let flaggedQuestions = {};
+    let showFlaggedOnly = false;
+    let selectedCategory = "All";
+    let isCompleted = false;
+
+    function getActiveQuestions() {
+        if (isCompleted) return [];
+        let list = randomizedQuestions.map((q, idx) => ({ ...q, originalIndex: originalQuestions.indexOf(q) }));
+        if (showFlaggedOnly) {
+            list = list.filter((_, idx) => flaggedQuestions[originalQuestions.indexOf(randomizedQuestions[idx])]);
+        }
+        if (selectedCategory !== "All") {
+            list = list.filter(q => q.category === selectedCategory);
+        }
+        return list;
+    }
+
+    function updateQuestion() {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+        }
+        const cardContainer = document.getElementById("question-card-container");
+        const navContainer = document.getElementById("nav-buttons-container");
+
+        if (cardContainer && !originalCardHTML && !isCompleted) {
+            originalCardHTML = cardContainer.innerHTML;
+        }
+
+        if (isCompleted) {
+            if (cardContainer) {
+                cardContainer.innerHTML = `
+                    <div style="text-align:center; padding:40px;">
+                        <h2>🎉 Congratulations!</h2>
+                        <p style="margin: 15px 0; font-size: 1.1rem;">You have successfully completed all 20 questions.</p>
+                        <button onclick="restartQuiz()" style="padding: 12px 24px; font-size: 1rem; background-color: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer;">Try Again</button>
+                    </div>`;
+            }
+            if (navContainer) navContainer.style.display = "none";
+            resetTimer();
+            return;
+        }
+
+        const activeList = getActiveQuestions();
+
+    if (activeList.length === 0) {
+        cardContainer.innerHTML = `<div style="text-align:center; padding:30px;"><h3>No questions match your current filter criteria.</h3><p style="color:var(--text-muted); font-size:0.9rem;">Try clearing your category filter or bookmarks toggle.</p></div>`;
+        navContainer.style.display = "none";
+        resetTimer();
+        return;
+    }
+
+    navContainer.style.display = "flex";
+
+    if (currentIndex >= activeList.length) {
+        currentIndex = activeList.length - 1;
+    }
+
+    const currentItem = activeList[currentIndex];
+    const origIdx = currentItem.originalIndex;
+
+    document.getElementById("question-number").innerText = `Category: ${currentItem.category}`;
+    document.getElementById("question-title").innerText = `${currentIndex + 1}. ${currentItem.title}`;
+    document.getElementById("sample-answer-text").innerHTML = currentItem.star;
+    document.getElementById("progress-indicator").innerText = `Question ${currentIndex + 1} of ${activeList.length}`;
+
+    const notesField = document.getElementById("question-notes");
+    if (notesField) notesField.value = "";
+    
+    const flagBtn = document.getElementById("flag-btn");
+    if (flaggedQuestions[origIdx]) {
+        flagBtn.classList.add("flagged");
+        flagBtn.innerText = "★ Bookmarked";
+    } else {
+        flagBtn.classList.remove("flagged");
+        flagBtn.innerText = "🔖 Bookmark";
+    }
+
+    document.getElementById("sample-answer-box").style.display = "none";
+    document.getElementById("prev-btn").disabled = currentIndex === 0;
+    document.getElementById("next-btn").disabled = false;
+    resetTimer();
+}
+
+function nextQuestion() {
+    const activeList = getActiveQuestions();
+    if (currentIndex < activeList.length - 1) {
+        currentIndex++;
+        updateQuestion();
+    } else {
+        isCompleted = true;
+        updateQuestion();
+    }
+}
+
+function prevQuestion() {
+    if (isCompleted) {
+        isCompleted = false;
+        if (originalCardHTML) {
+            const cardContainer = document.getElementById("question-card-container");
+            if (cardContainer) cardContainer.innerHTML = originalCardHTML;
+        }
+        currentIndex = randomizedQuestions.length - 1;
+        updateQuestion();
+        return;
+    }
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateQuestion();
+    }
+}
+
+function restartQuiz() {
+    isCompleted = false;
+    currentIndex = 0;
+    if (originalCardHTML) {
+        const cardContainer = document.getElementById("question-card-container");
+        if (cardContainer) cardContainer.innerHTML = originalCardHTML;
+    }
+    initializeQuiz();
+    updateQuestion();
+}
+    
+    function copyAllNotesToClipboard() {
+    let compiledText = "=== MY INTERVIEW PREP NOTES ===\n\n";
+    let hasNotes = false;
+
+      const statusMsg = document.getElementById("copy-status");
+    let allNotesText = "";
+
+    if (typeof interviewData !== 'undefined' && Array.isArray(interviewData)) {
+        interviewData.forEach((item, index) => {
+            if (item.notes && item.notes.trim() !== "") {
+                allNotesText += `Question ${index + 1}: ${item.question}\n`;
+                allNotesText += `Notes / STAR Draft:\n${item.notes}\n\n-----------------------------------\n\n`;
+            }
+        });
+    }
+
+    if (!allNotesText) {
+        const textareas = document.querySelectorAll(".question-notes, #question-notes");
+        textareas.forEach((ta, index) => {
+            if (ta.value.trim() !== "") {
+                allNotesText += `Question ${index + 1} Notes:\n${ta.value}\n\n`;
+            }
+        });
+    }
+
+    if (!allNotesText) {
+        allNotesText = document.getElementById("question-notes")?.value || "";
+    }
+
+    navigator.clipboard.writeText(allNotesText).then(() => {
+        statusMsg.classList.add("show");
+        setTimeout(() => {
+            statusMsg.classList.remove("show");
+        }, 2000);
+    });
+}
+
+    function toggleFlag() {
+        const activeList = getActiveQuestions();
+        if (currentIndex < activeList.length) {
+            const origIdx = activeList[currentIndex].originalIndex;
+            flaggedQuestions[origIdx] = !flaggedQuestions[origIdx];
+            updateQuestion();
+        }
+    }
+
+    function toggleFlagFilter() {
+        showFlaggedOnly = !showFlaggedOnly;
+        currentIndex = 0;
+        isCompleted = false;
+        if (originalCardHTML) {
+            const cardContainer = document.getElementById("question-card-container");
+            if (cardContainer) cardContainer.innerHTML = originalCardHTML;
+        }
+        const btn = document.getElementById("filter-toggle-btn");
+        if (showFlaggedOnly) {
+            btn.classList.add("active");
+        } else {
+            btn.classList.remove("active");
+        }
+        updateQuestion();
+    }
+
+    function filterByCategory(cat) {
+        selectedCategory = cat;
+        currentIndex = 0;
+        isCompleted = false;
+        if (originalCardHTML) {
+            const cardContainer = document.getElementById("question-card-container");
+            if (cardContainer) cardContainer.innerHTML = originalCardHTML;
+        }
+        ['cat-all', 'cat-behavioral', 'cat-leadership', 'cat-problem', 'cat-assessment'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.remove('active');
+        });
+        const activeId = 'cat-' + (cat === 'All' ? 'all' : cat.toLowerCase().split(' ')[0]);
+        const targetEl = document.getElementById(activeId);
+        if (targetEl) targetEl.classList.add('active');
+        updateQuestion();
+    }
+
+    function toggleSampleAnswer() {
+        const box = document.getElementById("sample-answer-box");
+        box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+
+    function speakCurrentQuestion() {
+        if ('speechSynthesis' in window && !isCompleted) {
+            const btn = document.getElementById("listen-btn");
+            
+            if (window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+                if (btn) btn.innerText = "🔊";
+                return;
+            }
+
+            const activeList = getActiveQuestions();
+            if (currentIndex < activeList.length) {
+                const utterance = new SpeechSynthesisUtterance(activeList[currentIndex].title);
+                
+                utterance.onend = () => {
+                    if (btn) btn.innerText = "🔊";
+                };
+
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utterance);
+                if (btn) btn.innerText = "⏹️";
+            }
+        }
+    }
+
+    function speakCustomText(txt) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(txt);
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    function copyThankYou() {
+        const txt = document.getElementById("ty-output").innerText;
+        navigator.clipboard.writeText(txt).then(() => {
+            const statusEl = document.getElementById("ty-status");
+            if (statusEl) {
+                statusEl.classList.add("show");
+                setTimeout(() => statusEl.classList.remove("show"), 2000);
+            }
+        });
+    }
+
+    function updateTimerDisplay() {
+        const m = Math.floor(totalSeconds / 60);
+        const s = totalSeconds % 60;
+        const timerEl = document.getElementById("timer");
+        if (timerEl) {
+            timerEl.innerText = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }
+    }
+
+    function toggleTimer() {
+        const btn = document.getElementById("timer-btn");
+        if (!timerRunning) {
+            if (totalSeconds <= 0) return;
+            timerRunning = true;
+            if (btn) {
+                btn.innerText = "Pause";
+                btn.style.backgroundColor = "#c23a3a";
+            }
+            timerInterval = setInterval(() => {
+                if (totalSeconds > 0) {
+                    totalSeconds--;
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(timerInterval);
+                    timerRunning = false;
+                    if (btn) {
+                        btn.innerText = "Start";
+                        btn.style.backgroundColor = "var(--primary)";
+                    }
+                }
+            }, 1000);
+        } else {
+            clearInterval(timerInterval);
+            timerRunning = false;
+            if (btn) {
+                btn.innerText = "Start";
+                btn.style.backgroundColor = "var(--primary)";
+            }
+        }
+    }
+
+    function resetTimer() {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        totalSeconds = 120;
+        updateTimerDisplay();
+        const btn = document.getElementById("timer-btn");
+        if (btn) {
+            btn.innerText = "Start";
+            btn.style.backgroundColor = "var(--primary)";
+        }
+    }
+
+    initializeQuiz();
+    updateQuestion();
+    updateTimerDisplay();
+</script>
+
+</body>
+</html>
